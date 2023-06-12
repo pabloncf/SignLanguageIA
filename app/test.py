@@ -18,18 +18,16 @@ imgSize = 300
 folder = "../../IaSignLanguageProject/Data/TOMARNO"
 counter = 0
 
-labels = ["A", "B", "C", "D", "E", "F", "G", "L", "LOVE", "O", "P", "TOMARNOCU"]
-
 while True:
     sucess, img = cap.read() # Reading the capture and put on img variable
-    imgOutput = img.copy()
+    imgOutput = img.copy()  #remove the hand draw. If you want to put the hand draw, remove this variable and use just the img variable
     hands, img = detector.findHands(img) # Put the HandDetector function into the video capture (cap)
     if hands:   # if have some hand, the program will crop the image and open a new window with just the hand
         hand = hands[0]
         x,y,w,h = hand['bbox'] # x = horizoltal; y = vertical; w = width; h = height
         
         if w > 0 and h > 0: # Check if width and height are positive
-            imgCrop = imgOutput = img.copy()[y-offset:y + h+offset, x-offset:x + w+offset]
+            imgCrop = imgOutput[y-offset:y + h+offset, x-offset:x + w+offset]
 
             if imgCrop.size > 0:    # Check if imgCrop is not empty
                 imgCrop = cv2.resize(imgCrop, (imgSize, imgSize))  # Resize imgCrop to match imgWhite shape
@@ -48,7 +46,7 @@ while True:
                     imgResizeShape = imgResize.shape
                     wGap = math.ceil((imgSize-wCal)/2)
                     imgWhite[:,wGap:wCal+wGap] = imgResize # Define a fix size to the imagehand
-                    prediction, index = classifier.getPrediction(img)
+                    prediction, index = classifier.getPrediction(imgOutput)
                     print(prediction, index)
                 
                 else:
