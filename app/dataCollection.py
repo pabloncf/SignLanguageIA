@@ -50,16 +50,16 @@ while True:
                     hGap = math.ceil((imgSize-hCal)/2)
                     imgWhite[hGap:hCal+hGap,:] = imgResize # Define a fix size to the imagehand
 
-                imgWhiteGray = cv2.cvtColor(imgWhite, cv2.COLOR_BGR2GRAY)
+                # imgWhiteGray = cv2.cvtColor(imgWhite, cv2.COLOR_BGR2GRAY) # Gray scale 
 
                 cv2.imshow("ImageCrop", imgCrop)
                 cv2.imshow("ImageWhite", imgWhite)
-                cv2.imshow("ImageWhiteGray", imgWhiteGray)
+                # cv2.imshow("ImageWhiteGray", imgWhiteGray)
 
     cv2.imshow("Image", img) # To ajust the image from your original size
     key = cv2.waitKey(1) # allows users to display a window for given milliseconds or until any key is pressed
 
     if key == ord("s"): # save the image when "s" are pressed
         counter += 1
-        cv2.imwrite(f'{folder}/Image_{time.time()}.jpg',imgWhiteGray)
+        cv2.imwrite(f'{folder}/Image_{time.time()}.jpg',imgWhite)
         print(counter)
