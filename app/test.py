@@ -62,8 +62,8 @@ while True:
                 cv2.putText(imgOutput, labels[index],(x,y-20),cv2.FONT_HERSHEY_COMPLEX,2,(255,0,255),2)
                 cv2.rectangle(imgOutput,(x-offset,y-offset),(x+w+offset,y+h+offset),(255,0,255),4)
 
-                cv2.imshow("ImageCrop", imgCrop)
-                cv2.imshow("ImageWhite", imgWhite)
+                # cv2.imshow("ImageCrop", imgCrop)
+                # cv2.imshow("ImageWhite", imgWhite)
 
     cv2.imshow("Image", imgOutput) # To ajust the image from your original size
     cv2.waitKey(1) # allows users to display a window for given milliseconds or until any key is pressed
